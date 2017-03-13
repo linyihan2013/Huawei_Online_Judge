@@ -1,33 +1,59 @@
 import java.util.Scanner;
 
 public class 字符串加解密 {
+	public static char encryptLetter(char c) {
+		if (c == 'z') {
+			return 'a';
+		} else if (c == 'Z') {
+			return 'A';
+		} else {
+			return (char) (c + 1);
+		}
+	}
+	
+	public static char decryptLetter(char c) {
+		if (c == 'a') {
+			return 'z';
+		} else if (c == 'A') {
+			return 'Z';
+		} else {
+			return (char) (c - 1);
+		}
+	}
+	
+	public static char encryptDigit(char c) {
+		if (c == '9') {
+			return '0';
+		} else {
+			return (char) (c + 1);
+		}
+	}
+	
+	public static char decryptDigit(char c) {
+		if (c == '0') {
+			return '9';
+		} else {
+			return (char) (c - 1);
+		}
+	}
+	
+	public static char changeCaseForLetter(char c) {
+		if (Character.isUpperCase(c)) {
+			return Character.toLowerCase(c);
+		} else {
+			return Character.toUpperCase(c);
+		}
+	}
+	
 	public static char[] encrypt(char[] input) {
 		char[] output = new char[input.length];
 		
 		for (int i = 0; i < input.length; i++) {
-			char c = input[i];
-			
 			if (Character.isLetter(input[i])) {
-				if ((input[i] == 'z') || (input[i] == 'Z')) {
-					c = 'a';
-				} else {
-					c = (char) (c + 1);
-				}
-				
-				if (Character.isUpperCase(input[i])) {
-					c = Character.toLowerCase(c);
-				} else {
-					c = Character.toUpperCase(c);
-				}
+				output[i] = changeCaseForLetter(encryptDigit(input[i]));
 			} else if (Character.isDigit(input[i])) {
-				if (input[i] == '9') {
-					c = '0';
-				} else {
-					c = (char) (c + 1);
-				}
+				output[i] = encryptDigit(input[i]);
 			}
-			
-			output[i] = c;
 		}
 		return output;
 	}
@@ -36,29 +62,11 @@ public class 字符串加解密 {
 		char[] output = new char[input.length];
 		
 		for (int i = 0; i < input.length; i++) {
-			char c = input[i];
-			
 			if (Character.isLetter(input[i])) {
-				if ((input[i] == 'a') || (input[i] == 'A')) {
-					c = 'z';
-				} else {
-					c = (char) (c - 1);
-				}
-				
-				if (Character.isUpperCase(input[i])) {
-					c = Character.toLowerCase(c);
-				} else {
-					c = Character.toUpperCase(c);
-				}
+				output[i] = changeCaseForLetter(decryptDigit(input[i]));
 			} else if (Character.isDigit(input[i])) {
-				if (input[i] == '0') {
-					c = '9';
-				} else {
-					c = (char) (c - 1);
-				}
+				output[i] = decryptDigit(input[i]);
 			}
-			
-			output[i] = c;
 		}
 		return output;
 	}
