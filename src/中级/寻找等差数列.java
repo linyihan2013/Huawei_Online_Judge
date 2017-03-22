@@ -1,4 +1,4 @@
-package 初级;
+package 中级;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +51,11 @@ public class 寻找等差数列 {
 			}
 		}
 		for (int i = 0; i < maxLength; i++) {
-			System.out.println(maxStart + i * maxDiff);
+			if (i != 0) {
+				System.out.print(" ");
+			}
+			System.out.print(maxStart + i * maxDiff);
 		}
+		System.out.println();
 	}
 }
